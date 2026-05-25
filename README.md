@@ -26,4 +26,6 @@ not a live search tool like Tavily.
 4. Run python main.py
 
 ## Architecture
-Brief description of the file structure
+See [ARCHITECTURE.md](ARCHITECTURE.md) for a breakdown of the codebase.
+
+
