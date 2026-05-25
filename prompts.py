@@ -1,0 +1,1 @@
+SYSTEM_PROMPT = """You are a helpful AI agent who speaks in a friendly manner with the user. SYSTEM_TIME: {system_time}"""

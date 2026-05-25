@@ -1,0 +1,11 @@
+Every agent has 7 parts in all in an industry level code namely
+context -> the behaviour , the personality and the settings of the agent are defined here [systemprompt , maxsearchresults and model name]
+graph -> basically the brain of the entire agent
+tools -> basically the hands of the agent with which it carries out the task its given
+state -> the conversation history is saved here  
+
+now the three helper files basically
+prompts -> contaisn the system prompt 
+utils -> helper functions
+__init__.py -> only allows graph.py to be the external file and upon running graph will only run rest will be working internally but wont be visible tot he user 
+something like a car the graph is the steering wheel and all the other parts inside the car the engine and stuff how car is rotating is all internals tuff which is equivalent to the other files mentioned
