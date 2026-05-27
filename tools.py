@@ -1,6 +1,6 @@
 import json
 
-from langchain_community.document_loaders import WebBaseLoader
+from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_core.runnables import RunnablePassthrough
@@ -11,12 +11,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 from datetime import datetime , timedelta
 
-loader = WebBaseLoader(
-    web_paths=(
-        "https://www.klm.com/en/information/baggage/cabin-baggage",
-        "https://www.klm.com/en/information/baggage/checked-baggage-allowance",
-    )
-)
+loader = TextLoader(r"C:\Users\Wali\OneDrive\Documents\Ai learn\Flight_agent\klm_baggage.txt")
 docs = loader.load()
 splitter = RecursiveCharacterTextSplitter(chunk_size = 1000 , chunk_overlap = 200)
 split = splitter.split_documents(docs)

@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+load_dotenv()
 from datetime import UTC, datetime
 from typing import Dict, List, Literal, cast
 
@@ -10,8 +12,7 @@ from Flight_agent.state import InputState, State
 from Flight_agent.tools import TOOLS
 from Flight_agent.utils import load_chat_model
 
-from dotenv import load_dotenv
-load_dotenv()
+
 
 async def call_model(state: State) -> Dict[str, List[AIMessage]]:
     # hardcode context directly for now
