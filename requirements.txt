@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+langgraph
+langchain-groq
+langchain-huggingface
+langchain-community
+chromadb
+pydantic
+python-dotenv
