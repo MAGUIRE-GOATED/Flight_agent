@@ -6,6 +6,7 @@ from typing import Dict, List, Literal, cast
 from langchain_core.messages import AIMessage
 from langgraph.graph import StateGraph
 from langgraph.prebuilt import ToolNode
+from langgraph.checkpoint.memory import MemorySaver  #checkpoint basically stores our state object into database after every single step so we dont lose memory once we refresh the script (amnesia)
 
 from Flight_agent.context import Context
 from Flight_agent.state import InputState, State
@@ -44,4 +45,5 @@ def route_model_output(state:State)->Literal["__end__","tools"]:
 
 builder.add_conditional_edges("call_model",route_model_output)
 builder.add_edge("tools","call_model")
-graph = builder.compile(name="React Agent")
+memory = MemorySaver()
+graph = builder.compile(name="React Agent",checkpointer=memory)

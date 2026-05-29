@@ -1,5 +1,5 @@
 import json
-
+import os
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
@@ -11,7 +11,10 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 from datetime import datetime , timedelta
 
-loader = TextLoader(r"C:\Users\Wali\OneDrive\Documents\Ai learn\Flight_agent\klm_baggage.txt")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FILE_PATH = os.path.join(BASE_DIR,"klm_baggage.txt")
+
+loader = TextLoader(FILE_PATH)
 docs = loader.load()
 splitter = RecursiveCharacterTextSplitter(chunk_size = 1000 , chunk_overlap = 200)
 split = splitter.split_documents(docs)
