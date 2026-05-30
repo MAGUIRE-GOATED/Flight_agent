@@ -2,11 +2,9 @@ fastapi
 uvicorn
 langgraph
 langchain-groq
-langchain-huggingface
 langchain-community
 langchain-text-splitters
-chromadb
 pydantic
 python-dotenv
 pysqlite3-binary
-sentence-transformers
+rank_bm25        

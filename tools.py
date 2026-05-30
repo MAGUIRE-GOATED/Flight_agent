@@ -1,15 +1,12 @@
-import json
-import os
+import json, os
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import Chroma
-from langchain_core.runnables import RunnablePassthrough
-from langchain_core.output_parsers import StrOutputParser
+from langchain_community.retrievers import BM25Retriever   # no PyTorch needed
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
-from langchain_huggingface import HuggingFaceEmbeddings
-
-from datetime import datetime , timedelta
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough
+from datetime import datetime, timedelta
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FILE_PATH = os.path.join(BASE_DIR,"klm_baggage.txt")
@@ -18,8 +15,10 @@ loader = TextLoader(FILE_PATH)
 docs = loader.load()
 splitter = RecursiveCharacterTextSplitter(chunk_size = 1000 , chunk_overlap = 200)
 split = splitter.split_documents(docs)
-vector_store = Chroma.from_documents(documents=split , embedding=HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2"))
-retriever = vector_store.as_retriever()
+
+retriever = BM25Retriever.from_documents(split)
+retriever.k = 4
+
 template = """You are a helpful AI Agent.Answer the user from only the documents he has attached. If u cant find the desired answer then just say " I couldnt find the desired answer" .Never make up facts or number
 context: {context},
 question: {question}
