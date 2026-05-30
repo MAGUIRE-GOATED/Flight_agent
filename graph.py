@@ -8,10 +8,10 @@ from langgraph.graph import StateGraph
 from langgraph.prebuilt import ToolNode
 from langgraph.checkpoint.memory import MemorySaver  #checkpoint basically stores our state object into database after every single step so we dont lose memory once we refresh the script (amnesia)
 
-from Flight_agent.context import Context
-from Flight_agent.state import InputState, State
-from Flight_agent.tools import TOOLS
-from Flight_agent.utils import load_chat_model
+from context import Context
+from state import InputState, State
+from tools import TOOLS
+from utils import load_chat_model
 
 
 

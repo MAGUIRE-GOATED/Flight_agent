@@ -3,7 +3,7 @@ load_dotenv()
 from fastapi import FastAPI
 from pydantic import BaseModel
 from langchain_core.messages import HumanMessage
-from Flight_agent.graph import graph
+from graph import graph
 app = FastAPI()
 
 # Define what the request body looks like
