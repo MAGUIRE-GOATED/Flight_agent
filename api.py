@@ -9,6 +9,15 @@ from langchain_core.messages import HumanMessage
 from graph import graph
 app = FastAPI()
 
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],   # lock this down to your frontend URL in production
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Define what the request body looks like
 class ChatRequest(BaseModel):
     message: str
