@@ -13,7 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],   # lock this down to your frontend URL in production
+    allow_origins=["https://luxury-youtiao-5bef59.netlify.app"],   # lock this down to your frontend URL in production
     allow_methods=["*"],
     allow_headers=["*"],
 )
