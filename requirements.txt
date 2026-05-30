@@ -1,10 +1,11 @@
 fastapi
 uvicorn
 langgraph
+langchain
 langchain-groq
 langchain-community
 langchain-text-splitters
 pydantic
 python-dotenv
 pysqlite3-binary
-rank_bm25        
+rank_bm25
