@@ -8,6 +8,9 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from datetime import datetime, timedelta
 
+#helps in dealing with the problem of path in 2 different pcs if we have a link tot he particular file attached say in .txt that .txt file wont neccarily have the same addres 
+#as in another pc because the username and file location differes so we import and create base_dir to create that starting unique address then join file name to it
+#INDEXING
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FILE_PATH = os.path.join(BASE_DIR,"klm_baggage.txt")
 
@@ -16,8 +19,12 @@ docs = loader.load()
 splitter = RecursiveCharacterTextSplitter(chunk_size = 1000 , chunk_overlap = 200)
 split = splitter.split_documents(docs)
 
+#we can use huggingface embeddings for more precise answer to our question becuase it converts text to vectors which basically understands the semantic meaning of the line even if the keyword is not matching it understands actually what the question is aksing unlike BM25 retriever it basically searches how many times a keyword from the question repeats in the text/ info given to it the reason we have used it here is because it takes less space around 5mb whereas huggingface takes around 500mb which gave trouble during deploying
+
 retriever = BM25Retriever.from_documents(split)
 retriever.k = 4
+
+#RETRIEVAL AND GENERATION
 
 template = """You are a helpful AI Agent.Answer the user from only the documents he has attached. If u cant find the desired answer then just say " I couldnt find the desired answer" .Never make up facts or number
 context: {context},
