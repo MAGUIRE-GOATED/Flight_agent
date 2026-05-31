@@ -34,7 +34,6 @@ async def call_model(state: State) -> Dict[str, List[AIMessage]]:
 builder = StateGraph(State,input_schema=InputState)
 builder.add_node(call_model)
 builder.add_node("tools",ToolNode(TOOLS))
-
 builder.add_edge("__start__","call_model")
 
 def route_model_output(state:State)->Literal["__end__","tools"]:
