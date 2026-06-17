@@ -27,6 +27,10 @@ class ChatRequest(BaseModel):
     message: str
     session_id : str
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 # Health check
 @app.get("/")
 def root():
